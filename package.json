@@ -1,0 +1,22 @@
+{
+  "name": "converter-network-server",
+  "version": "1.0.0",
+  "private": true,
+  "license": "AGPL-3.0-or-later",
+  "type": "module",
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --platform=node --target=node24 --format=esm --outfile=dist/index.mjs --alias:@cn/engine/registry=./vendor/engine-registry.ts --alias:@cn/tokens=./vendor/tokens.ts --banner:js=\"import{createRequire}from'node:module';const require=createRequire(import.meta.url);\"",
+    "start": "node dist/index.mjs",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@hono/node-server": "1.19.17",
+    "hono": "4.13.10"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2",
+    "vitest": "3.2.7",
+    "typescript": "5.9.3",
+    "@types/node": "24.19.0"
+  }
+}
