@@ -93,6 +93,8 @@ export function createApp(deps: AppDeps) {
   app.use("*", cors({
     origin: (origin) => (allowedOrigins.includes(origin) ? origin : null),
     allowMethods: ["GET", "POST", "DELETE"],
+    // The site names the downloaded file from this header, so it must be readable cross-origin.
+    exposeHeaders: ["Content-Disposition", "Content-Length"],
     maxAge: 600,
   }));
 

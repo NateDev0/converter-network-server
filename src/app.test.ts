@@ -199,4 +199,9 @@ describe("privacy", () => {
     const bad = await app.request("/health", { headers: { Origin: "https://evil.example" } });
     expect(bad.headers.get("access-control-allow-origin")).toBeNull();
   });
+
+  it("lets our sites read the download's file name", async () => {
+    const res = await makeApp().request("/health", { headers: { Origin: ORIGIN } });
+    expect(res.headers.get("access-control-expose-headers")).toContain("Content-Disposition");
+  });
 });
